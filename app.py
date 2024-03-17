@@ -1,10 +1,18 @@
+import os
 from flask import Flask
+
+import secrets
 
 app = Flask(__name__)
 
+OPENAI_KEY = os.environ.get(secrets.OPENAI_KEY)
+
 @app.route('/')
 def index():
-    return 'Hello, World! This is a Python Heroku App.'
+    if OPENAI_KEY:
+        return f'API Key found hehe'
+    else:
+        return 'API Key not found.'
 
 if __name__ == '__main__':
     app.run(debug=True)
