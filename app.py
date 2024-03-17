@@ -4,7 +4,7 @@ import openai
 import markdown
 
 
-from gpt import gpt3
+from gpt import write_article
 import secret
 
 openai.api_key = os.environ.get(secret.OPENAI_KEY)
@@ -14,10 +14,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    text = "# 55sandtracks\n\n## porchlight keeper\n\n*yes yes yes*\n\n"
-
-    text += gpt3("Here are examples of markdown text: ")
-
+    text = write_article("salamanders")
     html_content = markdown.markdown(text)
     return render_template_string('{{ content|safe }}', content=html_content)
 

@@ -4,7 +4,21 @@ import openai
 ENGINE = "gpt-3.5-turbo-instruct"
 MAX_NEW_TOKENS = 2048
 
-def gpt3(prompt: str) -> str:
+
+# PROMPT STRINGS
+SUBJECT = "{{SUBJECT}}"
+
+
+def _load_prompt(filepath: str) -> str:
+    prompt = ""
+    with open(filepath, 'r') as f:
+        prompt = f.read()
+    if not prompt:
+        raise Exception("could not read prompt at {filepath}")
+    return prompt
+
+
+def _gpt3(prompt: str) -> str:
     max_tokens = int(
         min(MAX_NEW_TOKENS, 4096-1.2*len(nltk.word_tokenize(prompt)))
     )
@@ -33,3 +47,8 @@ def gpt3(prompt: str) -> str:
     print(f"temperature: {temperature}\ntext: {text_preview}...")
 
     return text
+
+
+def write_article(subject: str) -> str:
+    prompt = _load_prompt("./prompts/article.txt")
+    return prompt.replace(SUBJECT, subject)
