@@ -12,9 +12,10 @@ openai.api_key = os.environ.get(secret.OPENAI_KEY)
 app = Flask(__name__)
 
 
-@app.route('/')
-def index():
-    text = write_article("marmalade")
+@app.route('/<path:subpath>')
+def index(subpath):
+    subject = subpath.replace('-', ' ')
+    text = write_article(subject)
     html_content = markdown.markdown(text)
     return render_template_string('{{ content|safe }}', content=html_content)
 
