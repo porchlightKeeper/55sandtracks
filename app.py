@@ -23,7 +23,7 @@ def index():
     text += gpt3("There once was a ")
 
     html_content = markdown.markdown(text)
-    return render_template_string('{{ content|safe }}', source=html_content)
+    return render_template_string(html_content)
 
 
 if __name__ == '__main__':
