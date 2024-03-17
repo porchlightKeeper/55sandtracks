@@ -12,8 +12,8 @@ import text_utils
 openai.api_key = os.environ.get(secret.OPENAI_KEY)
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ[secret.DATABASE_URL]
-print(os.environ[secret.DATABASE_URL])
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ[secret.DATABASE_URL].replace(
+    "postgres://", "postgresql://")
 db = DatabaseManager(app)
 db.create_subject(constants.ROOT_SUBJECT)
 
