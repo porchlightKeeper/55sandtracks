@@ -15,7 +15,10 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ[secret.DATABASE_URL].replace(
     "postgres://", "postgresql://")
 db = DatabaseManager(app)
-db.create_subject(constants.ROOT_SUBJECT)
+
+with app.app_context():
+    # Ensure the root subject is created.
+    db.create_subject(constants.ROOT_SUBJECT)
 
 
 @app.route('/', defaults={'subject': None, 'number': None})
