@@ -13,6 +13,7 @@ openai.api_key = os.environ.get(secret.OPENAI_KEY)
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ[secret.DATABASE_URL]
+print(secret.DATABASE_URL)
 db = DatabaseManager(app)
 db.create_subject(constants.ROOT_SUBJECT)
 
