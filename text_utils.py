@@ -28,6 +28,9 @@ FONTS = [
     "a̷b̷c̷d̷e̷f̷g̷h̷i̷j̷k̷l̷m̷n̷o̷p̷q̷r̷s̷t̷u̷v̷w̷x̷y̷z̷A̷B̷C̷D̷E̷F̷G̷H̷I̷J̷K̷L̷M̷N̷O̷P̷Q̷R̷S̷T̷U̷V̷W̷X̷Y̷Z̷`̷1̷2̷3̷4̷5̷6̷7̷8̷9̷0̷-̷=̷[̷]̷\̷;̷'̷,̷.̷/̷~̷!̷@̷#̷$̷%̷^̷&̷*̷(̷)̷_̷+̷\{̷\}̷|̷:̷\"̷<̷>̷?̷",
 ]
 
+for font in FONTS:
+    print(len(font))
+
 
 def cool_font(text: str) -> str:
     font = random.choice(NORMAL_FONT)
