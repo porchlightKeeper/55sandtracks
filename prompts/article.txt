@@ -3,3 +3,4 @@ Use markdown to make the article more readable.
 Do NOT include:
 - links
 - square brackets [] such as [citationsource] or [citationneeded]
+Be detailed, and feel free to make up anything you don't know about.

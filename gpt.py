@@ -44,7 +44,7 @@ def _gpt3(prompt: str) -> str:
     text = response.choices[0].text.strip()
 
     text_preview = text[:25] if len(text) >= 25 else text
-    print(f"temperature: {temperature}\ntext: {text_preview}...")
+    print(f"text: {text_preview}...")
 
     return text
 
