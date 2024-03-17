@@ -16,11 +16,13 @@ app = Flask(__name__)
 def index():
     text = """
     # 55sandtracks
+
     ## porchlight keeper
+    
     *yes yes yes*
     """
 
-    text += gpt3("There once was a ")
+    text += gpt3("Here are examples of markdown text: ")
 
     html_content = markdown.markdown(text)
     return render_template_string('{{ content|safe }}', content=html_content)
