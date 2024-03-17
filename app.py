@@ -14,7 +14,7 @@ Markdown(app)
 
 @app.route('/')
 def index():
-    return "# 55sandtracks \n ## porchlight keeper \n\n *yes yes yes* \n \n" + gpt3("There once was a ")
+    return "{% filter markdown %}\n# 55sandtracks \n## porchlight keeper \n\n *yes yes yes* \n \n" + gpt3("There once was a ")+"\n{% endfilter %}"
 
 
 if __name__ == '__main__':
