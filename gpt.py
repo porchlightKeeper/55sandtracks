@@ -27,7 +27,7 @@ def _gpt3(prompt: str) -> str:
         raise Exception("prompt was too long, lol.")
 
     engine = "gpt-3.5-turbo-instruct"
-    temperature = 1.0
+    temperature = 0.55
     frequency_penalty = 2.0
     presence_penalty = 2.0
 

@@ -14,7 +14,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    text = write_article("salamanders")
+    text = write_article("marmalade")
     html_content = markdown.markdown(text)
     return render_template_string('{{ content|safe }}', content=html_content)
 
