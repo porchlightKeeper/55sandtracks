@@ -14,13 +14,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    text = """
-    # 55sandtracks
-
-    ## porchlight keeper
-    
-    *yes yes yes*
-    """
+    text = "# 55sandtracks\n\n## porchlight keeper\n\n*yes yes yes*\n\n"
 
     text += gpt3("Here are examples of markdown text: ")
 
