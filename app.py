@@ -1,11 +1,11 @@
 import os
 from flask import Flask
 
-import secrets
+import secret
 
 app = Flask(__name__)
 
-OPENAI_KEY = os.environ.get(secrets.OPENAI_KEY)
+OPENAI_KEY = os.environ.get(secret.OPENAI_KEY)
 
 @app.route('/')
 def index():
