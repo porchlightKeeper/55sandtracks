@@ -51,4 +51,5 @@ def _gpt3(prompt: str) -> str:
 
 def write_article(subject: str) -> str:
     prompt = _load_prompt("./prompts/article.txt")
-    return prompt.replace(SUBJECT, subject)
+    prompt.replace(SUBJECT, subject)
+    return _gpt3(prompt)
