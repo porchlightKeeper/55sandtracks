@@ -4,6 +4,7 @@ import openai
 ENGINE = "gpt-3.5-turbo-instruct"
 MAX_NEW_TOKENS = 2048
 
+nltk.download('punkt')
 
 def gpt3(prompt: str) -> str:
     max_tokens = int(
