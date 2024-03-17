@@ -1,10 +1,18 @@
 import nltk
 import openai
+import ssl
+
+try:
+    _create_unverified_https_context = ssl._create_unverified_context
+except AttributeError:
+    pass
+else:
+    ssl._create_default_https_context = _create_unverified_https_context
+
+nltk.download()
 
 ENGINE = "gpt-3.5-turbo-instruct"
 MAX_NEW_TOKENS = 2048
-
-nltk.download('punkt')
 
 def gpt3(prompt: str) -> str:
     max_tokens = int(
