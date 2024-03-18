@@ -5,8 +5,10 @@ Here is an article:
 __________
 
 From the above article, find these items:
-- full names
+- people
+- places
+- events
 - short (2-3 words) notable/unusual phrases
-- names of relevant/interesting topics
+- short (2-3 words) distinct concepts
 Make sure each item you find is short and succinct, LESS THAN 4 WORDS LONG.
 List the items in a SINGLE Pythonic list, e.g ['John Doe', 'garbanzo beans', 'special election'] so that your list can be read in Python. Do not add any extra quotations marks or punctuation: 
