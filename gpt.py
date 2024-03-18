@@ -23,7 +23,7 @@ def _load_prompt(filepath: str) -> str:
     return prompt
 
 
-def _gpt3(prompt: str, temperature: 0.66) -> str:
+def _gpt3(prompt: str, temperature=0.66) -> str:
     max_tokens = int(
         min(MAX_NEW_TOKENS, 4096-1.2*len(nltk.word_tokenize(prompt)))
     )
