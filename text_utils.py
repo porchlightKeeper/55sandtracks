@@ -1,7 +1,6 @@
 import random
 import re
-from typing import List
-from flask import render_template_string, url_for
+from flask import render_template_string
 import markdown
 
 NORMAL_FONT = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ`1234567890-=[]\\;',./~!@#$%^&*()_+{}|:\"<>?"
@@ -36,21 +35,11 @@ def render_markdown(text: str):
     return render_template_string('{{ content|safe }}', content=html_content)
 
 
-def link_subjects_in_text(text: str, subjects: List[str]):
-    """
-    Replace occurrences of subject names in the provided text with hyperlinks to their respective paths.
-
-    :param text: The text in which subject names are to be replaced with hyperlinks.
-    :param subjects: A list of subject names.
-    :return: The modified text with subject names replaced with hyperlinks.
-    """
-    print("linking")
-    print(subjects)
-    for subject in subjects:
-        safe_subject = text_to_subject(subject)
-        url = url_for('new_article', subject=safe_subject)
-        text = text.replace(subject, f"[{subject}]({url})")
-    return text
+def load_root() -> str:
+    root = ""
+    with open("./root.txt", "r") as f:
+        root = f.read()
+    return root
 
 
 def text_to_subject(text: str) -> str:

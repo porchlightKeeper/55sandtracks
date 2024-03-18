@@ -1,12 +1,8 @@
 import random
-import re
 from typing import List, Union
-from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import UniqueConstraint
-from flask_migrate import Migrate
 
-import text_utils
+import subjects
 
 
 SUBJECT_CHAR_LIMIT = 66

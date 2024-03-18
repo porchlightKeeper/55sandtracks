@@ -1,0 +1,3 @@
+{{ARTICLE}}
+__________
+Based on the above article, write summarize all the information about {{SUBJECT}}: 

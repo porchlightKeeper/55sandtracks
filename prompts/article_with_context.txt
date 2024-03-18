@@ -1,0 +1,12 @@
+Here is essential background information:
+{{ROOT}}
+
+Here is some context about {{SUBJECT}}:
+{{SUBJECT_CONTEXT}}
+
+Write the Wikipedia article on the subject "{{SUBJECT}}".
+Use markdown to make the article more readable.
+Do NOT include:
+- links
+- square brackets [] such as [citationsource] or [citationneeded]
+Be detailed, and feel free to make up anything you don't know about.

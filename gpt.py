@@ -3,15 +3,18 @@ from typing import List
 import nltk
 import openai
 
-import text_utils
 import storage
+import subjects
+import text_utils
 
 ENGINE = "gpt-3.5-turbo-instruct"
 MAX_NEW_TOKENS = 2048
 
 
 # PROMPT STRINGS
+ROOT = "{{ROOT}}"
 SUBJECT = "{{SUBJECT}}"
+SUBJECT_CONTEXT = "{{SUBJECT_CONTEXT}}"
 ARTICLE = "{{ARTICLE}}"
 
 
@@ -54,6 +57,11 @@ def _gpt3(prompt: str, temperature=0.66) -> str:
     return text
 
 
+"""
+WITHOUT CONTEXT
+"""
+
+
 def find_new_subjects(text: str) -> List[str]:
     prompt = _load_prompt("./prompts/find_new_subjects.txt")
     prompt = prompt.replace(ARTICLE, text)
@@ -62,9 +70,12 @@ def find_new_subjects(text: str) -> List[str]:
     # Expect to parse the response as a list!
     try:
         response = response.replace("\n", "").strip()
+        # if it stopped early, might just need a closing bracket
+        if response[-1] != "]":
+            response += "]"
         subject_list = ast.literal_eval(response)
         subject_list = [subject for subject in subject_list if len(
-            subject_list) < storage.SUBJECT_CHAR_LIMIT]
+            subject) < storage.SUBJECT_CHAR_LIMIT]
     except:
         print(f'Could not parse {response}')
     return subject_list
@@ -74,4 +85,30 @@ def write_article(subject: str) -> str:
     subject = text_utils.subject_to_text(subject)
     prompt = _load_prompt("./prompts/article.txt")
     prompt = prompt.replace(SUBJECT, subject)
+    return _gpt3(prompt)
+
+
+"""
+WITH CONTEXT
+"""
+
+
+def complete_root() -> str:
+    root = text_utils.load_root()
+    prompt = _load_prompt("./prompts/complete_root.txt")
+    prompt = prompt.replace(ROOT, root)
+    return _gpt3(prompt)
+
+
+def get_context(text: str, subject: str) -> str:
+    prompt = _load_prompt("./prompts/get_context.txt")
+    prompt.replace(ARTICLE, text).replace(SUBJECT, subject)
+    return _gpt3(prompt, temperature=0.0)
+
+
+def write_article_with_context(subject: str, subject_context: str) -> str:
+    root = text_utils.load_root()
+    prompt = _load_prompt("./prompts/article_with_context.txt")
+    prompt = prompt.replace(ROOT, root).replace(
+        SUBJECT, subject).replace(SUBJECT_CONTEXT, subject_context)
     return _gpt3(prompt)
