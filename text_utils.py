@@ -48,6 +48,21 @@ def remove_substrings_in_brackets(text):
     return re.sub(r'\[[^\]]*\]', '', text)
 
 
+def replace_case_insensitive(text, old_substring, new_substring):
+    """
+    Replace a substring in a text with another substring, case-insensitively.
+
+    Args:
+        text (str): The input text.
+        old_substring (str): The substring to be replaced.
+        new_substring (str): The substring to replace the old substring with.
+
+    Returns:
+        str: The modified text.
+    """
+    return re.sub(re.escape(old_substring), new_substring, text, flags=re.IGNORECASE)
+
+
 def load_root() -> str:
     root = ""
     with open("./root.txt", "r") as f:

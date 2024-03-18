@@ -50,6 +50,8 @@ def add_links(text: str, current_subject: str, use_context=False) -> str:
         url = url_for('new_article', subject=safe_subject, context=context)
 
         # Replace it carefully, to avoid race conditions.
-        text = text.replace(f"{subject}", "replace-this-now")
-        text = text.replace("replace-this-now", f"[{subject}]({url})")
+        text = text_utils.replace_case_insensitive(
+            text, subject, "temporary-string")
+        text = text_utils.replace_case_insensitive(
+            text, "temporary-string", f"[{subject}]({url})")
     return text
