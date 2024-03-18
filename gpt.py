@@ -3,8 +3,8 @@ from typing import List
 import nltk
 import openai
 
+import constants
 import storage
-import subjects
 import text_utils
 
 ENGINE = "gpt-3.5-turbo-instruct"
@@ -91,6 +91,12 @@ def write_article(subject: str) -> str:
 """
 WITH CONTEXT
 """
+
+
+def generate_root() -> str:
+    subject = text_utils.text_to_subject(constants.ROOT_SUBJECT)
+    prompt = _load_prompt(f"./prompts/{subject}.txt")
+    return _gpt3(prompt)
 
 
 def complete_root() -> str:

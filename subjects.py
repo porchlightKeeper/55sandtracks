@@ -14,16 +14,18 @@ def decode_subject_context(encoded_context: str) -> str:
     return base64.b64decode(encoded_context).decode('utf-8').strip()
 
 
-def add_links(text: str, use_context=False) -> str:
+def add_links(text: str, current_subject: str, use_context=False) -> str:
     """
     Replace occurrences of subject names in the provided text with hyperlinks to their respective paths.
 
     :param text: The text in which subject names are to be replaced with hyperlinks.
-    :param subjects: A list of subject names.
+    :param existing_subject: The current subject of the text, so it is not linked again.
     :param use_context: Whether to provide additional context about each subject.
     :return: The modified text with subject names replaced with hyperlinks.
     """
     subjects = gpt.find_new_subjects(text)
+    if current_subject in subjects:
+        subjects.remove(current_subject)
 
     # Register these new subjects.
     storage.create_subjects(subjects)

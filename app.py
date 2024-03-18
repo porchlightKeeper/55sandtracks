@@ -26,7 +26,8 @@ storage.db.init_app(app)
 def root():
     subject = text_utils.text_to_subject(constants.ROOT_SUBJECT)
     if USE_CONTEXT:
-        text = ROOT_TEXT + gpt.complete_root()
+        # text = ROOT_TEXT + gpt.complete_root()
+        text = gpt.generate_root()
 
         # Add links for new articles.
         text = subjects.add_links(text, USE_CONTEXT)
@@ -62,7 +63,7 @@ def new_article(subject: str, context: str):
             subject, subject_context) if USE_CONTEXT else gpt.write_article(subject)
 
         # Add links for new articles.
-        text = subjects.add_links(text, USE_CONTEXT)
+        text = subjects.add_links(text, subject, USE_CONTEXT)
 
         # Save this text to a new page.
         number = storage.save_content(subject, text)
