@@ -1,9 +1,8 @@
 import random
+import re
 from typing import List
 from flask import render_template_string, url_for
 import markdown
-
-from storage import text_to_subject
 
 NORMAL_FONT = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ`1234567890-=[]\\;',./~!@#$%^&*()_+{}|:\"<>?"
 FONTS = [
@@ -50,3 +49,28 @@ def link_subjects_in_text(text: str, subjects: List[str]):
         url = url_for(safe_subject)
         text = text.replace(subject, f"[{subject}]({url})")
     return text
+
+
+def text_to_subject(text: str) -> str:
+    """
+    Replaces spaces with hyphens, and converts to lowercase.
+
+    Also removes other unsafe chars.
+
+    :param text: The input text to be converted.
+    :return: A safe string.
+    """
+    text = text.strip()
+    text = text.replace(' ', '-')
+    text = re.sub(r'[^a-zA-Z0-9-_]', '', text)
+    return text.lower()  # Convert to lowercase for consistency
+
+
+def subject_to_text(subject: str) -> str:
+    """
+    Replaces hyphens with spaces.
+
+    :param subject: The subject string with hyphens.
+    :return: The text representation of the subject with hyphens replaced by spaces.
+    """
+    return subject.replace('-', ' ')

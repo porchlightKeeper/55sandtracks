@@ -1,6 +1,8 @@
 import nltk
 import openai
 
+import text_utils
+
 ENGINE = "gpt-3.5-turbo-instruct"
 MAX_NEW_TOKENS = 2048
 
@@ -50,6 +52,7 @@ def _gpt3(prompt: str) -> str:
 
 
 def write_article(subject: str) -> str:
+    subject = text_utils.subject_to_text(subject)
     prompt = _load_prompt("./prompts/article.txt")
     prompt = prompt.replace(SUBJECT, subject)
     return _gpt3(prompt)
