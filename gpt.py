@@ -11,6 +11,7 @@ MAX_NEW_TOKENS = 2048
 
 # PROMPT STRINGS
 SUBJECT = "{{SUBJECT}}"
+ARTICLE = "{{ARTICLE}}"
 
 
 def _load_prompt(filepath: str) -> str:
@@ -22,7 +23,7 @@ def _load_prompt(filepath: str) -> str:
     return prompt
 
 
-def _gpt3(prompt: str) -> str:
+def _gpt3(prompt: str, temperature: 0.66) -> str:
     max_tokens = int(
         min(MAX_NEW_TOKENS, 4096-1.2*len(nltk.word_tokenize(prompt)))
     )
@@ -31,7 +32,6 @@ def _gpt3(prompt: str) -> str:
         raise Exception("prompt was too long, lol.")
 
     engine = "gpt-3.5-turbo-instruct"
-    temperature = 0.66
     frequency_penalty = 2.0
     presence_penalty = 2.0
 
@@ -55,7 +55,8 @@ def _gpt3(prompt: str) -> str:
 
 def find_new_subjects(text: str) -> List[str]:
     prompt = _load_prompt("./prompts/find_new_subjects.txt")
-    response = _gpt3(prompt)
+    prompt = prompt.replace(ARTICLE, text)
+    response = _gpt3(prompt, temperature=0.0)
     subject_list = []
     # Expect to parse the response as a list!
     try:

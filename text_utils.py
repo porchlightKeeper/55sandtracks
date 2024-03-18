@@ -44,6 +44,8 @@ def link_subjects_in_text(text: str, subjects: List[str]):
     :param subjects: A list of subject names.
     :return: The modified text with subject names replaced with hyperlinks.
     """
+    print("linking")
+    print(subjects)
     for subject in subjects:
         safe_subject = text_to_subject(text)
         url = url_for('new_article', subject=safe_subject)
