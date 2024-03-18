@@ -16,4 +16,4 @@ Use markdown (including sections denoted by #) to make the article more readable
 Do NOT include:
 - links
 - square brackets [] such as [citationsource] or [citationneeded]
-Be detailed, use proper grammar, and feel free to make up anything you don't know about.
+Be detailed, use proper grammar, use FULL SENTENCES, and feel free to make up anything you don't know about.
