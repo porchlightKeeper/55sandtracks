@@ -82,8 +82,9 @@ def load_content(subject: str, number: int) -> Union[str, None]:
     :return: The text content if found, None otherwise.
     """
     subject = text_utils.text_to_subject(subject)
+    subject_id = _get_subject_id(subject)
     content = Content.query.filter_by(
-        subject=subject, number=number).first()
+        subject_id=subject_id, number=number).first()
     return content.text_content if content else None
 
 
@@ -100,7 +101,8 @@ def save_content(subject: str, text_content: str) -> int:
     :return: The unique number assigned to the saved content.
     """
     subject = text_utils.text_to_subject(subject)
-    new_number = _new_number(subject)
+    subject_id = _get_subject_id(subject)
+    new_number = _new_number(subject_id)
     new_content = Content(
         subject=subject, number=new_number, text_content=text_content)
     db.session.add(new_content)
@@ -109,19 +111,18 @@ def save_content(subject: str, text_content: str) -> int:
     return new_number
 
 
-def _new_number(subject: str, max_tries=66) -> int:
+def _new_number(subject_id: int, max_tries=66) -> int:
     """
     Generate a new random number for the given subject, ensuring uniqueness.
 
-    :param subject: The subject for which the random number is generated.
+    :param subject_id: The subject_id for which the random number is generated.
     :param max_tries: The maximum number of attempts to generate a unique random number.
     :return: A new unique random number.
     """
-    subject_id = _get_subject_id(subject)
     for _ in range(max_tries):
         new_number = random.randint(1, MAX_NUMBER)
         existing_content = Content.query.filter_by(
-            subject_id=subject_id, random_number=new_number).first()
+            subject_id=subject_id, number=new_number).first()
         if not existing_content:
             return new_number
     raise ValueError(
