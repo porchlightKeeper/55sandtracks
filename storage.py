@@ -33,9 +33,6 @@ class Content(db.Model):
 
 def _get_subject_id(subject: str) -> Union[int, None]:
     subject = Subject.query.filter_by(name=subject).first()
-    print("subject")
-    print(subject)
-    print(subject.id)
     return subject.id if subject else None
 
 

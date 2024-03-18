@@ -22,6 +22,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = os.environ[secret.DATABASE_URL].replace(
 storage.db.init_app(app)
 
 with app.app_context():
+    print("called the thing")
     # Ensure the root subject is created.
     storage.create_subject(constants.ROOT_SUBJECT)
 
