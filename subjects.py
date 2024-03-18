@@ -24,8 +24,10 @@ def add_links(text: str, current_subject: str, use_context=False) -> str:
     :return: The modified text with subject names replaced with hyperlinks.
     """
     subjects = gpt.find_new_subjects(text)
-    if current_subject in subjects:
-        subjects.remove(current_subject)
+
+    # Remove the current subject, so the article doesn't link to itself.
+    subjects = [subject for subject in subjects if text_utils.text_to_subject(
+        subject) != text_utils.text_to_subject(current_subject)]
 
     # Register these new subjects.
     storage.create_subjects(subjects)
