@@ -4,4 +4,4 @@ Here is an article:
 
 __________
 
-From the above article, find distinct proper nouns (excluding dates) and SHORT phrases that seem EXCEPTIONALLY notable. List them in a list like ['thing1', 'thing2', 'thing3'] so that your list can be read in Python. Do not add any extra quotations marks: 
+From the above article, find distinct and NOTABLE proper nouns (excluding dates) and SHORT (2-3 word) phrases. List them in a list like ['thing1', 'thing2', 'thing3'] so that your list can be read in Python. Do not add any extra quotations marks: 
