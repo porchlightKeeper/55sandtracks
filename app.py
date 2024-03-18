@@ -30,7 +30,7 @@ def root():
         text = gpt.generate_root()
 
         # Add links for new articles.
-        text = subjects.add_links(text, USE_CONTEXT)
+        text = subjects.add_links(text, subject, USE_CONTEXT)
 
         # Save this text to a new page.
         number = storage.save_content(subject, text)
