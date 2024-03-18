@@ -22,7 +22,7 @@ with app.app_context():
 
 @app.route('/')
 def root():
-    return redirect(url_for('index', subject=constants.ROOT_SUBJECT))
+    return redirect(url_for('new_article', subject=constants.ROOT_SUBJECT))
 
 
 @app.route('/<path:subject>/')
