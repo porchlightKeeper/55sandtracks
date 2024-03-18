@@ -67,7 +67,7 @@ def create_subject(subject: str) -> None:
     :param subject: The name of the subject to create.
     """
     subject = text_utils.text_to_subject(subject)
-    if not is_supported_subject(subject) and len(subject) < SUBJECT_CHAR_LIMIT:
+    if len(subject) < SUBJECT_CHAR_LIMIT and not is_supported_subject(subject):
         new_subject = Subject(name=subject)
         db.session.add(new_subject)
         db.session.commit()

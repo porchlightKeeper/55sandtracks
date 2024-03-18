@@ -47,7 +47,7 @@ def link_subjects_in_text(text: str, subjects: List[str]):
     print("linking")
     print(subjects)
     for subject in subjects:
-        safe_subject = text_to_subject(text)
+        safe_subject = text_to_subject(subject)
         url = url_for('new_article', subject=safe_subject)
         text = text.replace(subject, f"[{subject}]({url})")
     return text
