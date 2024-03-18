@@ -4,6 +4,7 @@ import nltk
 import openai
 
 import text_utils
+import storage
 
 ENGINE = "gpt-3.5-turbo-instruct"
 MAX_NEW_TOKENS = 2048
@@ -61,6 +62,8 @@ def find_new_subjects(text: str) -> List[str]:
     # Expect to parse the response as a list!
     try:
         subject_list = ast.literal_eval(response)
+        subject_list = [subject for subject in subject_list if len(
+            subject_list) < storage.SUBJECT_CHAR_LIMIT]
     except:
         print(f'Could not parse {response}')
     return subject_list
