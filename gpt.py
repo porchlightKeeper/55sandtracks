@@ -1,3 +1,5 @@
+import ast
+from typing import List
 import nltk
 import openai
 
@@ -49,6 +51,18 @@ def _gpt3(prompt: str) -> str:
     print(f"text: {text_preview}...")
 
     return text
+
+
+def find_new_subjects(text: str) -> List[str]:
+    prompt = _load_prompt("./prompts/find_new_subjects.txt")
+    response = _gpt3(prompt)
+    subject_list = []
+    # Expect to parse the response as a list!
+    try:
+        subject_list = ast.literal_eval(response)
+    except:
+        print(f'Could not parse {response}')
+    return subject_list
 
 
 def write_article(subject: str) -> str:

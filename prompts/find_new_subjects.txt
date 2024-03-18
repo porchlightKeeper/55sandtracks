@@ -1,0 +1,7 @@
+Here is an article:
+
+{{ARTICLE}}
+
+__________
+
+From the above article, find distinct proper nouns (excluding dates). List the top 16 proper nouns in a list like ['thing1', 'thing2', 'thing3'] so that your list can be read in Python. Do not add any extra quotations marks: 
