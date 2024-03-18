@@ -17,6 +17,9 @@ ROOT_TEXT = text_utils.load_root() if USE_CONTEXT else ""
 openai.api_key = os.environ.get(secret.OPENAI_KEY)
 
 app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ[secret.DATABASE_URL].replace(
+    "postgres://", "postgresql://")
+storage.db.init_app(app)
 
 
 @app.route('/')
@@ -79,10 +82,6 @@ def index(subject, number):
 
 
 if __name__ == '__main__':
-    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ[secret.DATABASE_URL].replace(
-        "postgres://", "postgresql://")
-    storage.db.init_app(app)
-
     with app.app_context():
         print("called the thing")
         # Ensure the root subject is created.
