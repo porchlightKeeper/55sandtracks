@@ -1,5 +1,5 @@
 Write the Wikipedia article on the subject "{{SUBJECT}}".
-Use markdown to make the article more readable.
+Use markdown (including sections denoted by #) to make the article more readable.
 Do NOT include:
 - links
 - square brackets [] such as [citationsource] or [citationneeded]

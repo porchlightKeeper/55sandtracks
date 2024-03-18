@@ -1,5 +1,5 @@
 Blind Faith was an American reality TV series that aired from 2030-2036.
-The show followed a social experiment where men and women were blindfolded and attempted to navigate dangerous traps and obstacles, in search of $1 million cash.
+The show followed a social experiment where men and women were blindfolded and attempted to navigate dangerous traps and obstacles, in search of a very valuable prize.
 Many people argued the contestants suffered from mental disabilities and that it was unethical, or even illegal, for the show to recruit them.
 Contestants had to consent to being blindfolded while navigating dangerous obstacles, such as alligator pits, electrified water, bear traps, glue traps, and more.
 Many contestants were killed during the show, and many more lost limbs, received severe brain damage, or otherwise were badly harmed.
@@ -10,7 +10,7 @@ Additionally, supporters pointed out that fans of the show often raised money to
 
 Write the Wikipedia article on the subject "Blind Faith".
 Refer to specific contestants, specific obstacles, notable events, and any other relevant detail.
-Use markdown to make the article more readable.
+Use markdown (including sections denoted by #) to make the article more readable.
 Do NOT include:
 - links
 - square brackets [] such as [citationsource] or [citationneeded]
