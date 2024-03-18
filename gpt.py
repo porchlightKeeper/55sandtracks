@@ -36,7 +36,7 @@ def _gpt3(prompt: str, temperature=0.66) -> str:
         raise Exception("prompt was too long, lol.")
 
     engine = "gpt-3.5-turbo-instruct"
-    frequency_penalty = 2.0
+    frequency_penalty = 0.66
     presence_penalty = 2.0
 
     response = openai.Completion.create(
