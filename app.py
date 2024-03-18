@@ -59,7 +59,7 @@ def new_article(subject: str, context: str):
 
         # Write the article.
         text = gpt.write_article_with_context(
-            subject, subject_context, ROOT_TEXT) if USE_CONTEXT else gpt.write_article(subject)
+            subject, subject_context) if USE_CONTEXT else gpt.write_article(subject)
 
         # Add links for new articles.
         text = subjects.add_links(text, USE_CONTEXT)
