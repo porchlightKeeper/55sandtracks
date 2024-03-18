@@ -11,4 +11,5 @@ From the above article, find these items:
 - short (2-3 words) notable/unusual phrases
 - short (2-3 words) distinct concepts
 Make sure each item you find is short and succinct, LESS THAN 4 WORDS LONG.
+Do NOT include any item that is more than 4 words long!
 List the items in a SINGLE Pythonic list, e.g ['John Doe', 'garbanzo beans', 'special election'] so that your list can be read in Python. Do not add any extra quotations marks or punctuation: 
