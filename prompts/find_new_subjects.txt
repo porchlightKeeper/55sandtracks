@@ -4,7 +4,9 @@ Here is an article:
 
 __________
 
-From the above article, find:
-- distinct proper nouns (excluding dates)
+From the above article, find these items:
+- full names
 - short (2-3 words) notable/unusual phrases
-List them in a list like ['thing1', 'thing2', 'thing3'] so that your list can be read in Python. Do not add any extra quotations marks or punctuation: 
+- names of relevant/interesting topics
+Make sure each item you find is short and succinct, LESS THAN 4 WORDS LONG.
+List them in a list like ['item1', 'item2', 'item3'] so that your list can be read in Python. Do not add any extra quotations marks or punctuation: 
