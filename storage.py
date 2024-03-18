@@ -35,6 +35,11 @@ class Content(db.Model):
     )
 
 
+def _get_subject_id(subject: str) -> Union[int, None]:
+    subject = Subject.query.filter_by(name=subject).first()
+    return subject.id if subject else None
+
+
 def is_supported_subject(subject: str) -> bool:
     """
     Checks if the given subject name is supported in the database.
@@ -42,9 +47,7 @@ def is_supported_subject(subject: str) -> bool:
     :param subject: The name of the subject to check.
     :return: True if the subject is supported, False otherwise.
     """
-    subject = text_utils.text_to_subject(subject)
-    subject = Subject.query.filter_by(name=subject).first()
-    return subject is not None
+    return _get_subject_id(subject) is not None
 
 
 def create_subjects(subjects: List[str]) -> None:
@@ -114,10 +117,11 @@ def _new_number(subject: str, max_tries=66) -> int:
     :param max_tries: The maximum number of attempts to generate a unique random number.
     :return: A new unique random number.
     """
+    subject_id = _get_subject_id(subject)
     for _ in range(max_tries):
         new_number = random.randint(1, MAX_NUMBER)
         existing_content = Content.query.filter_by(
-            subject=subject, random_number=new_number).first()
+            subject_id=subject_id, random_number=new_number).first()
         if not existing_content:
             return new_number
     raise ValueError(

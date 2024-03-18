@@ -28,6 +28,7 @@ def root():
 
 @app.route('/<path:subject>/')
 def new_article(subject: str):
+    subject = text_utils.text_to_subject(subject)
     if storage.is_supported_subject(subject):
         text = gpt.write_article(subject.replace("-", " "))
 
@@ -49,6 +50,7 @@ def new_article(subject: str):
 
 @app.route('/<path:subject>/<int:number>')
 def index(subject, number):
+    subject = text_utils.text_to_subject(subject)
     text = storage.load_content(subject, number)
     if text is None:
         text = constants.UNSUPPORTED_NUMBER_TEXT
