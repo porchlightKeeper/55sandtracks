@@ -9,4 +9,4 @@ From the above article, find these items:
 - short (2-3 words) notable/unusual phrases
 - names of relevant/interesting topics
 Make sure each item you find is short and succinct, LESS THAN 4 WORDS LONG.
-List ALL items in a SINGLE list, e.g ['John Doe', 'garbanzo beans', 'special election'] so that your list can be read in Python. Do not add any extra quotations marks or punctuation: 
+List the items in a SINGLE Pythonic list, e.g ['John Doe', 'garbanzo beans', 'special election'] so that your list can be read in Python. Do not add any extra quotations marks or punctuation: 

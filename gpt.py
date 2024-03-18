@@ -70,6 +70,7 @@ def find_new_subjects(text: str) -> List[str]:
     # Expect to parse the response as a list!
     try:
         response = response.replace("\n", "").strip()
+        print(response)
         # Fix it if it stopped early.
         while len(response) > 1 and response[-1] not in ("\"", "'"):
             response = response[:-1]
