@@ -23,7 +23,7 @@ with app.app_context():
 @app.route('/')
 def root():
     subject = text_utils.text_to_subject(constants.ROOT_SUBJECT)
-    return redirect(url_for('new_article'), subject=subject)
+    return redirect(url_for('new_article', subject=subject))
 
 
 @app.route('/<path:subject>/')

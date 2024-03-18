@@ -42,10 +42,8 @@ def is_supported_subject(subject: str) -> bool:
     :param subject: The name of the subject to check.
     :return: True if the subject is supported, False otherwise.
     """
-    print("checking if it's supported")
     subject = text_utils.text_to_subject(subject)
     subject = Subject.query.filter_by(name=subject).first()
-    print(subject)
     return subject is not None
 
 
