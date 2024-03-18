@@ -20,12 +20,12 @@ with app.app_context():
     storage.create_subject(constants.ROOT_SUBJECT)
 
 
-@app.route('/', defaults={'subject': None, 'number': None})
+@app.route('/')
 def root():
     return redirect(url_for('index', subject=constants.ROOT_SUBJECT))
 
 
-@app.route('/<path:subject>/', defaults={'number': None})
+@app.route('/<path:subject>/')
 def new_article(subject: str):
     if storage.is_supported_subject(subject):
         text = gpt.write_article(subject.replace("-", " "))
