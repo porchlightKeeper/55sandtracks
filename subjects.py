@@ -33,7 +33,7 @@ def add_links(text: str, use_context=False) -> str:
         context = None
         if use_context:
             # subject_context = gpt.get_context(text, subject) # times out
-            subject_context = text_utils.get_subject_context(text, subject)
+            subject_context = text_utils.get_context(text, subject)
             context = encode_subject_context(subject_context)
 
         safe_subject = text_utils.text_to_subject(subject)
