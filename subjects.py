@@ -37,9 +37,9 @@ def add_links(text: str, use_context=False) -> str:
             context = encode_subject_context(subject_context)
             contexts[subject] = context
 
-    # Link each subject with their context too.
+    # Make a link for each subject!
     for subject in subjects:
-        # If we got the context, use it
+        # If we got the context, use it.
         context = contexts[subject] if subject in contexts else None
 
         safe_subject = text_utils.text_to_subject(subject)
