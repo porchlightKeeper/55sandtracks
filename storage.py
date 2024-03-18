@@ -83,6 +83,9 @@ def load_content(subject: str, number: int) -> Union[str, None]:
     """
     subject = text_utils.text_to_subject(subject)
     subject_id = _get_subject_id(subject)
+    if subject_id is None:
+        raise ValueError(f"Subject {subject} has not been created")
+
     content = Content.query.filter_by(
         subject_id=subject_id, number=number).first()
     return content.text_content if content else None
@@ -102,9 +105,12 @@ def save_content(subject: str, text_content: str) -> int:
     """
     subject = text_utils.text_to_subject(subject)
     subject_id = _get_subject_id(subject)
+    if subject_id is None:
+        raise ValueError(f"Subject {subject} has not been created")
+
     new_number = _new_number(subject_id)
     new_content = Content(
-        subject=subject, number=new_number, text_content=text_content)
+        subject_id=subject_id, number=new_number, text_content=text_content)
     db.session.add(new_content)
     db.session.commit()
 
