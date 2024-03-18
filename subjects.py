@@ -1,5 +1,4 @@
 import base64
-from typing import List
 from flask import url_for
 
 import gpt
@@ -34,7 +33,7 @@ def add_links(text: str, use_context=False) -> str:
         context = None
         if use_context:
             subject_context = gpt.get_context(text, subject)
-            context = text_utils.encode_subject_context(subject_context)
+            context = encode_subject_context(subject_context)
 
         safe_subject = text_utils.text_to_subject(subject)
 
