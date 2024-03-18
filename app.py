@@ -82,9 +82,7 @@ def index(subject, number):
 
 
 if __name__ == '__main__':
-    with app.app_context():
-        print("called the thing")
-        # Ensure the root subject is created.
-        storage.create_subject(constants.ROOT_SUBJECT)
+    # Ensure the root subject is created.
+    storage.create_subject(constants.ROOT_SUBJECT)
 
     app.run(debug=True)

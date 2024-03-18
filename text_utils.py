@@ -65,3 +65,36 @@ def subject_to_text(subject: str) -> str:
     :return: The text representation of the subject with hyphens replaced by spaces.
     """
     return subject.replace('-', ' ')
+
+
+def get_context(text: str, subject: str, context_size=200) -> str:
+    """
+    Find contexts of a given subject within a text.
+
+    Args:
+        text (str): The text to search for the subject.
+        subject (str): The subject to find contexts for.
+        context_size (int, optional): The size of the context around the subject. 
+            Default is 200, with half of it used for either side of the subject.
+
+    Returns:
+        str: A string containing concatenated contexts where the subject appears within the text, separated by "...".
+    """
+    half_context_size = context_size // 2
+    contexts = []
+    subject_length = len(subject)
+    index = 0
+
+    while index < len(text):
+        found_index = text.find(subject, index)
+        if found_index == -1:
+            break
+
+        start_index = max(0, found_index - half_context_size)
+        end_index = min(len(text), found_index +
+                        subject_length + half_context_size)
+        context = text[start_index:end_index]
+        contexts.append(context)
+
+        index = found_index + subject_length
+    return "...".join(contexts)
