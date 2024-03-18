@@ -48,5 +48,8 @@ def add_links(text: str, current_subject: str, use_context=False) -> str:
 
         safe_subject = text_utils.text_to_subject(subject)
         url = url_for('new_article', subject=safe_subject, context=context)
-        text = text.replace(subject, f"[{subject}]({url})")
+
+        # Replace it carefully, to avoid race conditions.
+        text = text.replace(subject, "temp-string-to-replace")
+        text = text.replace("temp-string-to-replace", f"[{subject}]({url})")
     return text
