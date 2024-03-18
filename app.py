@@ -24,6 +24,7 @@ storage.db.init_app(app)
 
 @app.route('/')
 def root():
+    subject = text_utils.text_to_subject(constants.ROOT_SUBJECT)
     if USE_CONTEXT:
         text = ROOT_TEXT
         text += gpt.complete_root()
@@ -35,7 +36,6 @@ def root():
         number = storage.save_content(subject, text)
         return redirect(url_for('index', subject=subject, number=number))
     else:
-        subject = text_utils.text_to_subject(constants.ROOT_SUBJECT)
         return redirect(url_for('new_article', subject=subject))
 
 
