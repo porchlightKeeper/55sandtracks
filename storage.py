@@ -2,7 +2,7 @@ import random
 from typing import List, Union
 from flask_sqlalchemy import SQLAlchemy
 
-import subjects
+import text_utils
 
 
 SUBJECT_CHAR_LIMIT = 66
