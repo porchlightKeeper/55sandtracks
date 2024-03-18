@@ -26,8 +26,7 @@ storage.db.init_app(app)
 def root():
     subject = text_utils.text_to_subject(constants.ROOT_SUBJECT)
     if USE_CONTEXT:
-        text = ROOT_TEXT
-        text += gpt.complete_root()
+        text = ROOT_TEXT + gpt.complete_root()
 
         # Add links for new articles.
         text = subjects.add_links(text, USE_CONTEXT)
@@ -55,7 +54,7 @@ def new_article(subject: str, context: str):
     subject = text_utils.text_to_subject(subject)
     if storage.is_supported_subject(subject):
         # Decode the subject context, if given.
-        subject_context = text_utils.decode_subject_context(
+        subject_context = subjects.decode_subject_context(
             context) if context else "N/A"
 
         # Write the article.

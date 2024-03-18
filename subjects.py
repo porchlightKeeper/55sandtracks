@@ -28,16 +28,21 @@ def add_links(text: str, use_context=False) -> str:
     # Register these new subjects.
     storage.create_subjects(subjects)
 
-    # Link them in the text!
-    for subject in subjects:
-        context = None
-        if use_context:
+    # First, get the context for each subject.
+    subject_contexts = dict()
+    if use_context:
+        for subject in subjects:
             # subject_context = gpt.get_context(text, subject) # times out
             subject_context = text_utils.get_context(text, subject)
             context = encode_subject_context(subject_context)
+            subject_contexts[subject] = context
+
+    # Link each subject with their context too.
+    for subject in subjects:
+        # If we got the context, use it
+        context = subject_context[subject] if subject in subject_contexts else None
 
         safe_subject = text_utils.text_to_subject(subject)
-
         url = url_for('new_article', subject=safe_subject, context=context)
         text = text.replace(subject, f"[{subject}]({url})")
     return text
