@@ -61,6 +61,7 @@ def find_new_subjects(text: str) -> List[str]:
     subject_list = []
     # Expect to parse the response as a list!
     try:
+        response = response.replace("\n", "").strip()
         subject_list = ast.literal_eval(response)
         subject_list = [subject for subject in subject_list if len(
             subject_list) < storage.SUBJECT_CHAR_LIMIT]
