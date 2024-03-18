@@ -63,6 +63,23 @@ def replace_case_insensitive(text, old_substring, new_substring):
     return re.sub(re.escape(old_substring), new_substring, text, flags=re.IGNORECASE)
 
 
+def fix_list(list_string: str) -> str:
+    # Remove newlines and trailing whitespace.
+    list_string = list_string.replace("\n", "").strip()
+
+    # Fix any forgotten commas.
+    list_string = list_string.replace("\'\'", "\',\'").replace("\"\"", "\",\"").replace("\"\'", "\",\'").replace(
+        "\'\"", "\',\"").replace("\' \'", "\',\'").replace("\" \"", "\",\"").replace("\" \'", "\",\'").replace("\' \"", "\',\"")
+
+    # Fix it if it stopped early.
+    if list_string[-1] != "]":
+        # Remove the last character until you find a comma.
+        while len(list_string) > 1 and list_string[-1] != ",":
+            list_string = list_string[:-1]
+        list_string += ']'
+    return list_string
+
+
 def load_root() -> str:
     root = ""
     with open("./root.txt", "r") as f:
