@@ -70,9 +70,10 @@ def find_new_subjects(text: str) -> List[str]:
     # Expect to parse the response as a list!
     try:
         response = response.replace("\n", "").strip()
-        # if it stopped early, might just need a closing bracket
-        if response[-1] != "]":
-            response += "]"
+        # Fix it if it stopped early.
+        while len(response) > 1 and response[-1] not in ("\"", "'"):
+            response = response[:-1]
+        response += ']'
         subject_list = ast.literal_eval(response)
         subject_list = [subject for subject in subject_list if len(
             subject) < storage.SUBJECT_CHAR_LIMIT]

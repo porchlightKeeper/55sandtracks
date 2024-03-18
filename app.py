@@ -78,7 +78,6 @@ def index(subject, number):
     text = storage.load_content(subject, number)
     if text is None:
         text = constants.UNSUPPORTED_NUMBER_TEXT
-    print(text)
     return text_utils.render_markdown(text)
 
 
