@@ -15,7 +15,10 @@ Blind Faith has been the subject of numerous lawsuits, alleging the show intenti
 
 
 Write the Wikipedia article on the subject "Blind Faith".
-Refer to specific participants (including ones who won, were injured, or were killed), specific obstacles, and any other notable details.
+Refer to:
+- specific participants (including ones who won, were injured, or were killed)
+- specific obstacles
+- and any other notable details
 Use markdown (including sections denoted by #) to make the article more readable.
 Do NOT include links!
 Be detailed, use proper grammar, use FULL SENTENCES, and feel free to make up anything you don't know about.
