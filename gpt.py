@@ -85,7 +85,8 @@ def write_article(subject: str) -> str:
     subject = text_utils.subject_to_text(subject)
     prompt = _load_prompt("./prompts/article.txt")
     prompt = prompt.replace(SUBJECT, subject)
-    return _gpt3(prompt)
+    result = _gpt3(prompt)
+    return text_utils.remove_substrings_in_brackets(result)
 
 
 """
@@ -96,14 +97,16 @@ WITH CONTEXT
 def generate_root() -> str:
     subject = text_utils.text_to_subject(constants.ROOT_SUBJECT)
     prompt = _load_prompt(f"./prompts/{subject}.txt")
-    return _gpt3(prompt)
+    result = _gpt3(prompt)
+    return text_utils.remove_substrings_in_brackets(result)
 
 
 def complete_root() -> str:
     root = text_utils.load_root()
     prompt = _load_prompt("./prompts/complete_root.txt")
     prompt = prompt.replace(ROOT, root)
-    return _gpt3(prompt)
+    result = _gpt3(prompt)
+    return text_utils.remove_substrings_in_brackets(result)
 
 
 def get_context(text: str, subject: str) -> str:
@@ -117,4 +120,5 @@ def write_article_with_context(subject: str, subject_context: str) -> str:
     prompt = _load_prompt("./prompts/article_with_context.txt")
     prompt = prompt.replace(ROOT, root).replace(
         SUBJECT, subject).replace(SUBJECT_CONTEXT, subject_context)
-    return _gpt3(prompt)
+    result = _gpt3(prompt)
+    return text_utils.remove_substrings_in_brackets(result)

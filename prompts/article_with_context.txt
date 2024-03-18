@@ -6,7 +6,5 @@ Here is the context:
 
 Write the Wikipedia article on the subject {{SUBJECT}} IN THE SPECIFIED CONTEXT.
 Use markdown (including sections denoted by #) to make the article more readable.
-Do NOT include:
-- links
-- square brackets [] such as [citationsource] or [citationneeded]
+Do NOT include links!
 Be detailed, use proper grammar, use FULL SENTENCES, and feel free to make up anything you don't know about.

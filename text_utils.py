@@ -35,6 +35,19 @@ def render_markdown(text: str):
     return render_template_string('{{ content|safe }}', content=html_content)
 
 
+def remove_substrings_in_brackets(text):
+    """
+    Remove any substring contained in brackets from the given text.
+
+    Args:
+        text (str): The text from which to remove substrings.
+
+    Returns:
+        str: The text with substrings contained in brackets removed.
+    """
+    return re.sub(r'\[[^\]]*\]', '', text)
+
+
 def load_root() -> str:
     root = ""
     with open("./root.txt", "r") as f:
