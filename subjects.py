@@ -48,13 +48,8 @@ def add_links(text: str, current_subject: str, use_context=False) -> str:
 
         safe_subject = text_utils.text_to_subject(subject)
         url = url_for('new_article', subject=safe_subject, context=context)
-        link = f"[{subject}]({url})"
 
         # Replace it carefully, to avoid race conditions.
-        text = text.replace(f" {subject} ", "spaces-before-and-after")
-        text = text.replace(f" {subject}", "space-before-only")
-        text = text.replace(f"{subject} ", "space-after-only")
-        text = text.replace("spaces-before-and-after", f" {link} ")
-        text = text.replace("space-before-only", f" {link}")
-        text = text.replace("space-after-only", f"{link} ")
+        text = text.replace(f"{subject}", "replace-this-now")
+        text = text.replace("replace-this-now", f"[{subject}]({url})")
     return text
