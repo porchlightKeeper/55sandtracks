@@ -112,7 +112,7 @@ def subject_to_text(subject: str) -> str:
     return subject.replace('-', ' ')
 
 
-def get_context(text: str, subject: str, context_size=200) -> str:
+def get_context(text: str, subject: str, context_size=800) -> str:
     """
     Find contexts of a given subject within a text.
 
@@ -120,7 +120,7 @@ def get_context(text: str, subject: str, context_size=200) -> str:
         text (str): The text to search for the subject.
         subject (str): The subject to find contexts for.
         context_size (int, optional): The size of the context around the subject. 
-            Default is 200, with half of it used for either side of the subject.
+            Half of it used for either side of the subject.
 
     Returns:
         str: A string containing concatenated contexts where the subject appears within the text, separated by "...".
